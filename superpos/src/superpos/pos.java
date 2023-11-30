@@ -4,6 +4,7 @@
  */
 package superpos;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import com.mysql.cj.xdevapi.Statement;
 import java.awt.event.KeyEvent;
 
 import java.sql.Connection;
@@ -15,14 +16,13 @@ import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.util.Vector;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+/**/
 
 
-
-/**
- *
- * @author shiran
- */
 public class pos extends javax.swing.JFrame {
 
   
@@ -39,6 +39,7 @@ public class pos extends javax.swing.JFrame {
     PreparedStatement insert;
     ResultSet rs;
     
+    DefaultTableModel model = new DefaultTableModel();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +77,7 @@ public class pos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this,"Qty is not enough ");
                 }
                 else{
-                    DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+                    model = (DefaultTableModel)jTable1.getModel();
                     model.addRow(new Object[]
                     {
                         txtprocode.getText(),
@@ -86,10 +87,21 @@ public class pos extends javax.swing.JFrame {
                         tot,
                         
                     });
+                    
+                    int sum = 0;
+                    
+                    for(int i =0;i<jTable1.getRowCount();i++)
+                    {
+                        sum = sum + Integer.parseInt(jTable1.getValueAt(i, 4).toString());
+                    }
+                    
+                       txtsub.setText(Integer.toString(sum)) ;
+                    
                          txtprocode.setText("");
                          txtproname.setText("");
                          txtprice.setText("");
                          txtqty.setText("");
+                         txtprocode.requestFocus();
                 }
             }
             
@@ -131,11 +143,11 @@ public class pos extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        txtbrand4 = new javax.swing.JTextField();
+        txtsub = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        txtbrand5 = new javax.swing.JTextField();
+        txtpay = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        txtbrand6 = new javax.swing.JTextField();
+        txtbal = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -330,25 +342,25 @@ public class pos extends javax.swing.JFrame {
 
         jLabel10.setText("Subtotal");
 
-        txtbrand4.addActionListener(new java.awt.event.ActionListener() {
+        txtsub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtbrand4ActionPerformed(evt);
+                txtsubActionPerformed(evt);
             }
         });
 
         jLabel15.setText("Pay");
 
-        txtbrand5.addActionListener(new java.awt.event.ActionListener() {
+        txtpay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtbrand5ActionPerformed(evt);
+                txtpayActionPerformed(evt);
             }
         });
 
         jLabel16.setText("Balance");
 
-        txtbrand6.addActionListener(new java.awt.event.ActionListener() {
+        txtbal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtbrand6ActionPerformed(evt);
+                txtbalActionPerformed(evt);
             }
         });
 
@@ -381,15 +393,15 @@ public class pos extends javax.swing.JFrame {
                                         .addGap(25, 25, 25)
                                         .addComponent(jLabel10)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtbrand4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtsub, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(45, 45, 45)
                                         .addComponent(jLabel15)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtbrand5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtpay, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(61, 61, 61)
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtbrand6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtbal, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
@@ -422,10 +434,10 @@ public class pos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(txtbrand4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtbrand5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtsub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtpay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16)
-                            .addComponent(txtbrand6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtbal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -453,10 +465,10 @@ public class pos extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-         DefaultTableModel d1 = (DefaultTableModel)jTable1.getModel();
-         int selectIndex = jTable1.getSelectedRow();
+      //   DefaultTableModel d1 = (DefaultTableModel)jTable1.getModel();
+       //  int selectIndex = jTable1.getSelectedRow();
          
-         txtprocode.setText(d1.getValueAt(selectIndex, 1).toString());
+       //  txtprocode.setText(d1.getValueAt(selectIndex, 1).toString());
           
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -473,23 +485,128 @@ public class pos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtqtyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        model.removeRow(jTable1.getSelectedRow());
+            int sum = 0;
+           for(int i =0;i<jTable1.getRowCount();i++)
+           
+                    {
+                        sum = sum + Integer.parseInt(jTable1.getValueAt(i, 4).toString());
+                    }
+                    
+                       txtsub.setText(Integer.toString(sum)) ;
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtbrand4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbrand4ActionPerformed
+    private void sales(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        String date = dtf.format(now);
+        
+        
+        String subtot = txtsub.getText();
+        String pay = txtpay.getText();
+        String bal = txtbal.getText();
+        int lastinsertid = 0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos","root","");
+            String query = "insert into sales (date,subtotal,pay,balance) values (?,?,?,?)";
+       
+          
+           insert = con1.prepareStatement(query);
+            insert.setString(1,date);
+            insert.setString(2,subtot);
+             insert.setString(3,pay);
+            insert.setString(4,bal);
+            insert.executeUpdate();
+            
+            ResultSet generateKeyResult = insert.getGeneratedKeys();
+            
+            if(generateKeyResult.next())
+            {
+                lastinsertid = generateKeyResult.getInt(1);
+            }
+            
+            int rows = jTable1.getRowCount();
+            String query1 = "insert into sales_product (sales_id,product_id,price,qty,total) values (?,?,?,?,?)";
+            insert = con1.prepareStatement(query1);
+            
+            String product_id="";
+             String price="";
+             String qty="";
+             int total= 0;
+            for(int i = 0;i<jTable1.getRowCount();i++)
+            {
+                product_id = (String)jTable1.getValueAt(i, 0);
+            price = (String)jTable1.getValueAt(i, 2);
+            qty = (String)jTable1.getValueAt(i, 3);
+            total = (int)jTable1.getValueAt(i, 4);
+            
+            insert.setInt(1, lastinsertid);
+            insert.setString(2, product_id);
+             insert.setString(3, price);
+              insert.setString(4, qty);
+               insert.setInt(5, total);
+               
+               insert.executeUpdate();
+            }
+            
+             String query3 = "update product set qty=qry-? where barcode=?";
+            insert = con1.prepareStatement(query3);
+            
+            
+            
+            for(int i = 0;i<jTable1.getRowCount();i++)
+            {
+                product_id = (String)jTable1.getValueAt(i, 0);
+            qty = (String)jTable1.getValueAt(i, 3);
+      
+            
+            insert.setString(1, qty);
+            insert.setString(2, product_id);
+           
+               insert.execute();
+            }
+     
+            insert.addBatch();
+            JOptionPane.showMessageDialog(this,"Record saved");
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }
+    
+    
+    private void txtsubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsubActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtbrand4ActionPerformed
+    }//GEN-LAST:event_txtsubActionPerformed
 
-    private void txtbrand5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbrand5ActionPerformed
+    private void txtpayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpayActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtbrand5ActionPerformed
+    }//GEN-LAST:event_txtpayActionPerformed
 
-    private void txtbrand6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbrand6ActionPerformed
+    private void txtbalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtbrand6ActionPerformed
+    }//GEN-LAST:event_txtbalActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+   
+        int pay = Integer.parseInt(txtpay.getText());
+         int subtotal = Integer.parseInt(txtsub.getText());
+        
+         int bal = pay - subtotal;
+         
+         txtbal.setText(String.valueOf(bal));
+
+         sales();
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtprocodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprocodeKeyPressed
@@ -596,12 +713,12 @@ public class pos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JTextField txtbrand4;
-    private javax.swing.JTextField txtbrand5;
-    private javax.swing.JTextField txtbrand6;
+    private javax.swing.JTextField txtbal;
+    private javax.swing.JTextField txtpay;
     private javax.swing.JTextField txtprice;
     private javax.swing.JTextField txtprocode;
     private javax.swing.JTextField txtproname;
     private javax.swing.JTextField txtqty;
+    private javax.swing.JTextField txtsub;
     // End of variables declaration//GEN-END:variables
 }

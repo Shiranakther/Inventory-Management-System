@@ -43,15 +43,15 @@
                                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtbrand4" min="-2" pref="136" max="-2" attributes="0"/>
+                                      <Component id="txtsub" min="-2" pref="136" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtbrand5" min="-2" pref="133" max="-2" attributes="0"/>
+                                      <Component id="txtpay" min="-2" pref="133" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtbrand6" min="-2" pref="135" max="-2" attributes="0"/>
+                                      <Component id="txtbal" min="-2" pref="135" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jButton2" min="-2" pref="124" max="-2" attributes="0"/>
                                   </Group>
@@ -95,10 +95,10 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtbrand4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtbrand5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtsub" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtpay" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtbrand6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtbal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -424,9 +424,9 @@
         <Property name="text" type="java.lang.String" value="Subtotal"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtbrand4">
+    <Component class="javax.swing.JTextField" name="txtsub">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtbrand4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtsubActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
@@ -434,9 +434,9 @@
         <Property name="text" type="java.lang.String" value="Pay"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtbrand5">
+    <Component class="javax.swing.JTextField" name="txtpay">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtbrand5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpayActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
@@ -444,9 +444,9 @@
         <Property name="text" type="java.lang.String" value="Balance"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtbrand6">
+    <Component class="javax.swing.JTextField" name="txtbal">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtbrand6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtbalActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
