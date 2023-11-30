@@ -25,3 +25,25 @@ Here's a simplified breakdown of the core functionalities of a Java POS system:
 - **Receipt Generation:** Generate receipts for completed transactions.
 
 - **Sales Reporting:** Provide detailed reports on sales performance, inventory status, and customer trends.
+
+## Main interface
+![snip 3](https://github.com/Shiranakther/Inventory-Management-System/assets/127624730/370d58d6-9a64-48b5-8e1f-5604216f9802)
+
+Main functions- 
+Create Record,
+Update Record,
+Read Record,
+Delete Record
+
+## category interface 
+![snip1](https://github.com/Shiranakther/Inventory-Management-System/assets/127624730/f9207bad-6999-4fab-baae-22e50b55dab9)
+
+Main functions- 
+Create Record,
+Update Record,
+Read Record,
+Delete Record
+
+
+
+
